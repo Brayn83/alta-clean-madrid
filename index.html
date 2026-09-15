@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alta Clean Madrid — Limpieza profesional de tapicerías a domicilio</title>
+<meta name="description" content="Limpieza profesional de sofás, alfombras, colchones y mobiliario a domicilio en Madrid. Presupuesto claro por WhatsApp con una foto y tu código postal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0A0A;
+    --paper:#FFFFFF;
+    --blue:#9FB3CC;
+    --blue-deep:#7C93B0;
+    --blue-pale:#EEF2F7;
+    --blue-pale-deep:#DCE4ED;
+    --text-2:#585F68;
+    --text-2-dark: rgba(255,255,255,.72);
+    --line:#E5E9EF;
+    --line-dark: rgba(255,255,255,.16);
+    --glass-bg: rgba(255,255,255,.08);
+    --glass-bg-strong: rgba(255,255,255,.14);
+    --glass-border: rgba(255,255,255,.22);
+    --glass-hi: rgba(255,255,255,.30);
+    --maxw:1180px;
+    --pad: clamp(20px, 5vw, 64px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Archivo',sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; line-height:1.08; margin:0; letter-spacing:-0.01em;}
+  p{margin:0;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .container{max-width:var(--maxw); margin:0 auto; padding-left:var(--pad); padding-right:var(--pad);}
+  section{position:relative;}
+  :focus-visible{outline:2px solid var(--blue-deep); outline-offset:3px;}
+
+  /* ---------- glass recipe ---------- */
+  .glass{
+    position:relative; overflow:hidden;
+    background:var(--glass-bg);
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
+    backdrop-filter: blur(20px) saturate(1.5);
+    border:1px solid var(--glass-border);
+    box-shadow: inset 0 1px 0 var(--glass-hi), 0 24px 60px -24px rgba(0,0,0,.65);
+    border-radius:28px;
+  }
+  .glass::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(118deg, transparent 38%, rgba(255,255,255,.12) 50%, transparent 62%);
+  }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+    .glass{background:rgba(20,20,20,.76);}
+  }
+  .glass-chip{
+    position:relative; overflow:hidden;
+    background:var(--glass-bg-strong);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    backdrop-filter: blur(16px) saturate(1.4);
+    border:1px solid var(--glass-border);
+    box-shadow: inset 0 1px 0 var(--glass-hi);
+    border-radius:20px;
+  }
+
+  /* ---------- buttons ---------- */
+  .btn{display:inline-flex; align-items:center; gap:10px; font-family:'Archivo',sans-serif; font-weight:600; font-size:15px; padding:15px 28px; text-decoration:none; cursor:pointer; transition:transform .15s ease, opacity .15s ease; border-radius:999px; border:1px solid transparent;}
+  .btn:hover{transform:translateY(-1px); opacity:.92;}
+  .btn-light{background:var(--paper); color:var(--ink); box-shadow:0 10px 26px -10px rgba(0,0,0,.5);}
+  .btn-dark{background:var(--ink); color:var(--paper); box-shadow:0 10px 26px -10px rgba(0,0,0,.35);}
+  .btn-glass{
+    background:var(--glass-bg-strong); color:var(--paper); border-color:var(--glass-border);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  }
+  .btn-glass-light{
+    background: rgba(255,255,255,.55); color:var(--ink); border-color: rgba(10,10,10,.12);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 4px 16px -6px rgba(10,10,10,.18);
+  }
+  .btn svg{flex:none;}
+
+  /* ---------- nav ---------- */
+  header{position:sticky; top:0; z-index:40;
+    background:rgba(255,255,255,.68);
+    -webkit-backdrop-filter: blur(18px) saturate(1.6);
+    backdrop-filter: blur(18px) saturate(1.6);
+    border-bottom:1px solid rgba(10,10,10,.08);}
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){ header{background:rgba(255,255,255,.96);} }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
+  .wordmark{display:flex; align-items:center; gap:9px; font-family:'Archivo',sans-serif; font-weight:700; font-size:14.5px; letter-spacing:.09em; text-decoration:none; color:var(--ink);}
+  .wordmark svg{flex:none;}
+  .wordmark .accent{color:var(--blue-deep);}
+  .nav .btn{padding:11px 22px; font-size:13.5px;}
+
+  /* ---------- dark / glass showcase sections ---------- */
+  .dark-section{background:var(--ink); color:var(--paper); overflow:hidden;}
+  .dark-section::before{
+    content:""; position:absolute; width:680px; height:680px; border-radius:50%;
+    background:radial-gradient(circle, rgba(159,179,204,.40), rgba(159,179,204,0) 70%);
+    top:-260px; right:-160px; filter:blur(10px); pointer-events:none;
+  }
+  .dark-section::after{
+    content:""; position:absolute; width:520px; height:520px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,.14), rgba(255,255,255,0) 70%);
+    bottom:-220px; left:-160px; filter:blur(10px); pointer-events:none;
+  }
+  .dark-section .section-head p{color:var(--text-2-dark);}
+
+  /* ---------- hero ---------- */
+  .hero{padding-top:clamp(52px,8vw,96px); padding-bottom:clamp(52px,8vw,96px);}
+  .hero-grid{display:grid; grid-template-columns:1.35fr 1fr; gap:clamp(28px,5vw,72px); align-items:center; position:relative;}
+  .hero h1{font-size:clamp(34px,4.6vw,55px); max-width:12.5ch; text-transform:uppercase; letter-spacing:-0.005em; color:var(--paper);}
+  .hero-sub{margin-top:22px; max-width:44ch; color:var(--text-2-dark); font-size:17px;}
+  .hero-cta{margin-top:32px; display:flex; flex-wrap:wrap; align-items:center; gap:18px;}
+  .hero-note{font-size:13.5px; color:var(--text-2-dark);}
+  .hero-note span{display:block;}
+  .hero-visual{aspect-ratio:4/5; width:100%; position:relative;}
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+    .reveal-delay{animation-delay:.12s;}
+    @keyframes rise{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+  }
+
+  /* ---------- photo frame (example placeholders) ---------- */
+  .photo-frame{position:relative; overflow:hidden; border-radius:28px; box-shadow:0 24px 60px -24px rgba(0,0,0,.55); background:linear-gradient(135deg,#1B2430,#0A0A0A); display:flex; align-items:flex-end; justify-content:flex-start;}
+  .photo-frame.hero-photo{background-image:url('images/hero-cleaning.png'); background-size:cover; background-position:center;}
+  .photo-frame.hero-photo::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,10,10,.03) 40%, rgba(10,10,10,.44) 100%);}
+  .business-photo{background-image:url('images/business-space.jpeg'); background-size:cover; background-position:center;}
+  .photo-icon{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); opacity:.5;}
+  .photo-tag{position:relative; margin:16px; padding:7px 14px; font-size:11px; font-weight:600; letter-spacing:.03em; color:var(--paper); border-radius:999px;}
+
+  /* ---------- trust chips ---------- */
+  .trust{padding-top:0; padding-bottom:clamp(52px,8vw,96px);}
+  .trust-grid{display:flex; flex-wrap:wrap; gap:16px; position:relative;}
+  .trust-chip{flex:1 1 250px; padding:22px 22px; display:flex; flex-direction:column; gap:12px;}
+  .trust-chip svg{flex:none;}
+  .trust-chip p{font-size:14px; color:var(--text-2-dark); max-width:22ch;}
+
+  /* ---------- section heads ---------- */
+  .section{padding-top:clamp(56px,8vw,104px); padding-bottom:clamp(56px,8vw,104px);}
+  .section-head{max-width:640px; margin-bottom:clamp(32px,5vw,56px);}
+  .section-head h2{font-size:clamp(28px,3.4vw,40px);}
+  .section-head p{margin-top:14px; color:var(--text-2); font-size:16.5px;}
+
+  /* ---------- before / after ---------- */
+  .ba-wrap{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:22px; max-width:920px;}
+  .ba-card{position:relative; overflow:hidden; border-radius:24px; background:var(--ink); box-shadow:0 24px 60px -24px rgba(0,0,0,.28);}
+  .ba-card img{display:block; width:100%; height:auto; aspect-ratio:3/4; object-fit:contain; background:var(--ink);}
+  .ba-tag{position:absolute; top:16px; left:16px; z-index:1; font-size:11.5px; font-weight:700; letter-spacing:.06em; padding:6px 12px; background:rgba(255,255,255,.18); color:var(--paper); border-radius:999px; border:1px solid var(--glass-border); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);}
+  .ba-caption{grid-column:1 / -1; margin-top:-6px; font-size:13.5px; color:var(--text-2);}
+  .ba-section{padding-bottom:clamp(28px,4vw,48px);}
+
+  /* ---------- services list ---------- */
+  .svc-list{border-top:1px solid var(--line);}
+  .svc-row{display:grid; grid-template-columns:1fr auto; gap:12px 24px; align-items:baseline; padding:26px 0; border-bottom:1px solid var(--line);}
+  .svc-name{font-family:'Fraunces',serif; font-size:21px; font-weight:500;}
+  .svc-desc{margin-top:6px; color:var(--text-2); font-size:14.5px; max-width:46ch;}
+  .svc-price{font-weight:600; font-size:15px; white-space:nowrap; color:var(--blue-deep);}
+  .svc-note{margin-top:26px; font-size:14.5px; color:var(--text-2);}
+  .services-section{padding-bottom:clamp(28px,4vw,48px);}
+  .process-section{padding-top:clamp(28px,4vw,48px);}
+  .ba-section + .services-section,
+  .services-section + .process-section{padding-top:clamp(24px,3vw,40px);}
+
+  /* ---------- process ---------- */
+  .process{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(24px,4vw,40px);}
+  .process-item{border-top:2px solid var(--blue); padding-top:20px;}
+  .process-num{font-family:'Fraunces',serif; font-size:15px; color:var(--blue-deep); margin-bottom:14px;}
+  .process-item h3{font-size:20px; font-weight:500; margin-bottom:10px;}
+  .process-item p{color:var(--text-2); font-size:14.5px;}
+
+  /* ---------- business band ---------- */
+  .biz-grid{display:grid; grid-template-columns:1.2fr 1fr; gap:clamp(28px,5vw,60px); align-items:center; position:relative;}
+  .biz p.lead{font-size:17px; color:var(--text-2-dark); max-width:52ch; margin-top:16px;}
+  .biz .btn{margin-top:28px;}
+  .biz h2{color:var(--paper);}
+
+  /* ---------- coverage ---------- */
+  .coverage{background:var(--blue-pale);}
+  .coverage-grid{display:grid; grid-template-columns:1fr 1.15fr; gap:clamp(24px,4vw,48px); align-items:start;}
+  .coverage ul{list-style:none; margin:20px 0 0; padding:0; columns:2; gap:20px;}
+  .coverage li{font-size:14.5px; padding:7px 0; border-bottom:1px solid var(--blue-pale-deep);}
+  .map-frame{width:100%; aspect-ratio:4/3; border:1px solid var(--blue-pale-deep); overflow:hidden; border-radius:24px;}
+  .map-frame iframe{width:100%; height:100%; border:0;}
+
+  /* ---------- why us ---------- */
+  .why-list{display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(24px,4vw,40px); margin-top:8px;}
+  .why-item{border-top:1px solid var(--line); padding-top:18px;}
+  .why-item h3{font-size:17px; font-weight:600; font-family:'Archivo',sans-serif; margin-bottom:8px;}
+  .why-item p{color:var(--text-2); font-size:14.5px;}
+
+  /* ---------- final cta ---------- */
+  .final-panel{padding:clamp(40px,6vw,64px) clamp(28px,5vw,56px); text-align:left; position:relative;}
+  .final-panel h2{font-size:clamp(28px,3.8vw,44px); max-width:14ch; text-transform:uppercase; color:var(--paper);}
+  .final-panel .btn{margin-top:26px;}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line); padding-top:36px; padding-bottom:36px;}
+  .foot-grid{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:18px;}
+  .foot-links{display:flex; gap:26px; flex-wrap:wrap; font-size:14px;}
+  .foot-links a{text-decoration:none; color:var(--text-2); border-bottom:1px solid transparent;}
+  .foot-links a:hover{border-color:var(--text-2);}
+  .foot-copy{font-size:13px; color:var(--text-2);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1; aspect-ratio:16/10;}
+    .biz-grid, .coverage-grid{grid-template-columns:1fr;}
+    .process{grid-template-columns:1fr; gap:22px;}
+    .why-list{grid-template-columns:1fr; gap:20px;}
+    .coverage ul{columns:1;}
+    .ba-wrap{grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px;}
+    .ba-tag{top:10px; left:10px; font-size:9px; padding:5px 8px;}
+  }
+  @media (max-width:560px){
+    .svc-row{grid-template-columns:1fr;}
+    .svc-price{font-size:14px;}
+    .hero-cta{flex-direction:column; align-items:flex-start;}
+    .trust-chip{flex:1 1 100%;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#top" class="wordmark">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="var(--blue-deep)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      ALTA <span class="accent">CLEAN</span> MADRID
+    </a>
+    <a class="btn btn-glass-light" href="https://wa.me/34722841492?text=Hola%2C%20quiero%20un%20presupuesto%20de%20limpieza" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.27-1.38a9.87 9.87 0 0 0 4.72 1.2h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.12h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.24 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.15.17-.29.19-.53.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.15-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.24-.87.85-.87 2.08 0 1.22.89 2.4 1.02 2.57.12.16 1.74 2.66 4.23 3.73.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+      Escribir por WhatsApp
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero dark-section">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <h1>Resultados que se ven. Calidad que se siente.</h1>
+      <p class="hero-sub">Limpieza profesional de sofás, alfombras, colchones y mobiliario a domicilio en Madrid y alrededores. Sin mover ni desmontar nada.</p>
+      <div class="hero-cta">
+        <a class="btn btn-light" href="https://wa.me/34722841492?text=Hola%2C%20quiero%20un%20presupuesto%20de%20limpieza" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.27-1.38a9.87 9.87 0 0 0 4.72 1.2h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.12h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.24 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.15.17-.29.19-.53.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.15-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.24-.87.85-.87 2.08 0 1.22.89 2.4 1.02 2.57.12.16 1.74 2.66 4.23 3.73.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+          Pide tu presupuesto por WhatsApp
+        </a>
+        <p class="hero-note"><span>Respuesta en minutos.</span><span>Presupuesto sin compromiso, desde 25€.</span></p>
+      </div>
+    </div>
+    <div class="hero-visual photo-frame hero-photo reveal reveal-delay">
+      <span class="photo-tag glass-chip">Limpieza profesional a domicilio</span>
+    </div>
+  </div>
+</section>
+
+<section class="trust dark-section">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-chip glass-chip">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--paper)" stroke-width="1.4"><path d="M20 6 9 17l-5-5"/></svg>
+        <p>Limpieza profesional con maquinaria de inyección-extracción</p>
+      </div>
+      <div class="trust-chip glass-chip">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--paper)" stroke-width="1.4"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3z"/></svg>
+        <p>Productos seguros para niños y mascotas</p>
+      </div>
+      <div class="trust-chip glass-chip">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--paper)" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        <p>Presupuesto claro antes de empezar</p>
+      </div>
+      <div class="trust-chip glass-chip">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--paper)" stroke-width="1.4"><path d="M3 10.5 12 4l9 6.5"/><path d="M5 9.5V20h14V9.5"/></svg>
+        <p>Servicio a domicilio en toda la Comunidad de Madrid</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section ba-section">
+  <div class="container">
+    <div class="section-head">
+        <h2>Antes y después</h2>
+        <p>Así queda un sofá o una alfombra tras el servicio. Fotos reales del trabajo.</p>
+    </div>
+    <div class="ba-wrap">
+        <div class="ba-card">
+          <span class="ba-tag">ANTES</span>
+          <img src="images/antes.jpg" alt="Tapicería antes de la limpieza" loading="lazy">
+        </div>
+        <div class="ba-card">
+          <span class="ba-tag">DESPUÉS</span>
+          <img src="images/despues.jpg" alt="Tapicería después de la limpieza" loading="lazy">
+        </div>
+        <div class="ba-caption">
+          Resultado real del servicio, sin filtros aplicados.
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="section services-section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Qué limpiamos</h2>
+      <p>Precios orientativos. El presupuesto exacto se cierra por WhatsApp con una foto y tu código postal.</p>
+    </div>
+    <div class="svc-list">
+      <div class="svc-row"><div><div class="svc-name">Sofás y sillones</div><div class="svc-desc">Desde una plaza hasta chaise longue, en tela, piel o microfibra.</div></div><div class="svc-price">25 – 90 €</div></div>
+      <div class="svc-row"><div><div class="svc-name">Sillas tapizadas</div><div class="svc-desc">Precio por unidad, aplica el mínimo de servicio si es la única pieza.</div></div><div class="svc-price">15 – 20 € / ud.</div></div>
+      <div class="svc-row"><div><div class="svc-name">Colchones</div><div class="svc-desc">Individual o doble, con tratamiento contra ácaros incluido.</div></div><div class="svc-price">35 – 60 €</div></div>
+      <div class="svc-row"><div><div class="svc-name">Alfombras y moquetas</div><div class="svc-desc">Precio por metro cuadrado, recogida y entrega a domicilio disponible.</div></div><div class="svc-price">8 – 12 € / m²</div></div>
+      <div class="svc-row"><div><div class="svc-name">Cabeceros y puffs</div><div class="svc-desc">Se limpian en el mismo servicio que el resto del dormitorio o salón.</div></div><div class="svc-price">20 – 25 €</div></div>
+    </div>
+    <p class="svc-note">Servicio mínimo: 60–70 €.</p>
+  </div>
+</section>
+
+<section class="section process-section">
+  <div class="container">
+    <div class="section-head"><h2>Cómo funciona</h2></div>
+    <div class="process">
+      <div class="process-item"><div class="process-num">01</div><h3>Escríbenos</h3><p>Mándanos una foto del mueble o la alfombra y tu código postal por WhatsApp.</p></div>
+      <div class="process-item"><div class="process-num">02</div><h3>Confirmamos</h3><p>Te damos un precio cerrado y la primera fecha disponible, sin compromiso.</p></div>
+      <div class="process-item"><div class="process-num">03</div><h3>Limpiamos</h3><p>Vamos a tu casa u oficina el día acordado. Nada que mover ni desmontar.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section biz dark-section">
+  <div class="container biz-grid">
+    <div>
+      <h2>Para empresas y alojamientos turísticos</h2>
+      <p class="lead">Oficinas, hoteles, inmobiliarias y gestores de alquiler turístico trabajan con nosotros de forma recurrente. Tarifa especial por volumen y planes de limpieza periódica entre huéspedes o inquilinos.</p>
+      <a class="btn btn-glass" href="https://wa.me/34722841492?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20tarifas%20para%20empresas" target="_blank" rel="noopener">Solicita tarifa por volumen</a>
+    </div>
+    <div class="hero-visual photo-frame business-photo" style="aspect-ratio:4/3;" role="img" aria-label="Dormitorio y salón preparados para una limpieza profesional">
+      <span class="photo-tag glass-chip">Limpieza para empresas y alojamientos</span>
+    </div>
+  </div>
+</section>
+
+<section class="section coverage">
+  <div class="container coverage-grid">
+    <div>
+      <h2>Dónde trabajamos</h2>
+      <p style="margin-top:14px; color:var(--text-2);">Madrid capital y municipios cercanos, sin coste de desplazamiento dentro de la zona.</p>
+      <ul>
+        <li>Centro</li><li>Chamberí</li><li>Salamanca</li><li>Chamartín</li>
+        <li>Retiro</li><li>Arganzuela</li><li>Tetuán</li><li>Moncloa</li>
+        <li>Alcobendas</li><li>Pozuelo</li><li>Getafe</li><li>Las Rozas</li>
+      </ul>
+    </div>
+    <div class="map-frame">
+      <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-3.889%2C40.328%2C-3.520%2C40.520&amp;layer=mapnik&amp;marker=40.4168%2C-3.7038" loading="lazy" title="Zona de cobertura en Madrid"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2>Por qué elegirnos</h2></div>
+    <div class="why-list">
+      <div class="why-item"><h3>Trato directo</h3><p>Hablas siempre con quien va a limpiar tu casa, no con un centro de atención.</p></div>
+      <div class="why-item"><h3>Precio cerrado</h3><p>Sabes cuánto vas a pagar antes de que lleguemos. Sin sorpresas al final.</p></div>
+      <div class="why-item"><h3>Oficio real</h3><p>Experiencia real en limpieza de tapicerías, con atención al detalle en cada mueble.</p></div>
+      <div class="why-item"><h3>Sin compromiso</h3><p>Presupuesto gratis y sin letra pequeña. Decides tú si sigues adelante.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark-section">
+  <div class="container">
+    <div class="final-panel glass">
+      <h2>¿Le devolvemos la vida a tus muebles?</h2>
+      <a class="btn btn-light" href="https://wa.me/34722841492?text=Hola%2C%20quiero%20un%20presupuesto%20de%20limpieza" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.27-1.38a9.87 9.87 0 0 0 4.72 1.2h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.12h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.24 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.15.17-.29.19-.53.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.15-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.24-.87.85-.87 2.08 0 1.22.89 2.4 1.02 2.57.12.16 1.74 2.66 4.23 3.73.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+        Escribir por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container foot-grid">
+    <a href="#top" class="wordmark">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="var(--blue-deep)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      ALTA <span class="accent">CLEAN</span> MADRID
+    </a>
+    <div class="foot-links">
+      <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/34722841492" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="#top">Volver arriba</a>
+    </div>
+    <p class="foot-copy">© 2026 Alta Clean Madrid</p>
+  </div>
+</footer>
+
+<script>
+  var hdr = document.querySelector('header');
+  window.addEventListener('scroll', function(){
+    hdr.style.boxShadow = window.scrollY > 4 ? '0 1px 0 rgba(10,10,10,.06)' : 'none';
+  }, { passive: true });
+</script>
+
+</body>
+</html>
